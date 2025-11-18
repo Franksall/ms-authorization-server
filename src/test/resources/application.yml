@@ -1,0 +1,20 @@
+# Este archivo (src/test/resources/application.yml)
+# se usa SÓLO cuando se corren las pruebas (./gradlew test)
+
+spring:
+  # 1. Desactiva el Config Server (el error que estamos viendo)
+  cloud:
+    config:
+      enabled: false
+    # 2. Desactiva el Discovery Client (Eureka)
+    discovery:
+      enabled: false
+
+  # 3. Desactiva la conexión a la Base de Datos (Reactiva y Bloqueante)
+  # (El Servidor de Autorización suele necesitar una BD para guardar usuarios/clientes)
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.r2dbc.R2dbcDataAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration

@@ -1,0 +1,18 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: ms-authorization-server
+  config:
+    import: "configserver:http://ms-config-server:8888"
+  cloud:
+    config:
+      fail-fast: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry-service:8099/eureka
+  instance:
+    prefer-ip-address: true
